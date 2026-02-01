@@ -1,125 +1,757 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="msvalidate.01" content="AD425AA038145AB299F8DBFD23AD5A13" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Craft Launcher</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background: url('background.png') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .container {
-            max-width: 800px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            position: relative;
-            min-height: 300px; /* Adjust as needed */
-            overflow: auto;
-            height: 80%; /* 设置容器高度为100% */
-        }
-        .chinese {
-            font-size: 24px;
-            margin-bottom: 10px;
-            text-align: center;
-            animation: flyInLeft 2s forwards;
-        }
-        .english {
-            font-size: 16px;
-            text-align: left;
-            display: inline-block;
-            margin-left: 40px;
-            margin-bottom: 20px;
-            animation: flyInRight 2s forwards;
-        }
-        @keyframes flyInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes flyInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        .github-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000; /* 确保按钮在容器之上 */
-        }
-        .flash-button {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            opacity: 0.5;
-            animation: opacityAnimation 2s infinite alternate;
-            text-decoration: none;
-        }
-        .flash-button:hover {
-            background-color: #90ee90;
-            animation: none;
-            cursor: pointer;
-            opacity: 1;
-        }
-        .flash-button:active {
-            background-color: #008000;
-            opacity: 1;
-        }
-        @keyframes opacityAnimation {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>MotWnb | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MotWnb's homepage'" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
+      --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.6);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #020617 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0%, #4f46e5, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #e5e7eb;
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4),
+        0 12px 30px rgba(37, 99, 235, 0.6);
+    }
+
+    .nav-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: #e5e7eb;
+    }
+
+    .nav-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.primary {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #e5e7eb;
+      border-color: transparent;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+    }
+
+    .nav-link.primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.75);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 26px;
+      margin-top: 26px;
+      margin-bottom: 32px;
+    }
+
+    .hero-main {
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 20px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .btn {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-med),
+        color var(--transition-med),
+        border-color var(--transition-med),
+        transform var(--transition-fast),
+        box-shadow var(--transition-med);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #e5e7eb;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.85);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:hover {
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      opacity: 0.7;
+    }
+
+    .hero-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      border-radius: inherit;
+      border: 1px dashed rgba(148, 163, 184, 0.25);
+    }
+
+    .hero-orbit-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #4f46e5;
+      box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.35);
+      top: 18px;
+      right: 40px;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top, #020617 0, #020617 55%);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #4f46e5, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #e5e7eb;
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4),
+        0 12px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .avatar-info-main {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .avatar-info-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .social-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .social-pill:hover {
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stats-item {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      text-align: left;
+    }
+
+    .stats-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .stats-value {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tech-pill {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    .section {
+      margin-top: 10px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: radial-gradient(circle at top, #020617 0, #020617 55%);
+      border-radius: var(--radius-md);
+      padding: 12px 12px 10px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-med),
+        border-color var(--transition-fast),
+        background var(--transition-med);
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      border-color: rgba(129, 140, 248, 0.9);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .project-badge {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.12);
+      color: #a5b4fc;
+      border: 1px solid rgba(129, 140, 248, 0.7);
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      min-height: 32px;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .project-tag {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .project-stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    footer {
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--text-muted);
+    }
+
+    footer a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 18px 14px 40px;
+      }
+
+      .nav {
+        padding: 8px 10px;
+      }
+
+      .nav-sub {
+        display: none;
+      }
+
+      .hero-main {
+        padding: 18px 16px 16px;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-orbit {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="chinese">欢迎来到Easy Craft Launcher！</div>
-        <div class="english">Welcome to Easy Craft Launcher！</div>
+  <main>
+    <header class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">M</div>
+        <div>
+          <div class="nav-title">MotWnb</div>
+          <div class="nav-sub">Developer · Tinkerer · Learner</div>
+        </div>
+      </div>
+      <nav class="nav-right">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="https://github.com/MotWnb" class="nav-link primary" target="_blank" rel="noreferrer">
+          GitHub
+        </a>
+      </nav>
+    </header>
 
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Active on GitHub</span>
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span>MotWnb</span>
+        </h1>
+        <p class="hero-subtitle">
+          This is my personal homepage where I showcase my open source side projects and experiments. I believe in learning by building and sharing my work with the community.
+        </p>
 
-        <div class="chinese">Easy Craft Launcher是一款由中国人使用Python编写的《我的世界》Java版启动器，致力于为玩家提供快速、稳定的游戏体验。</div>
-        <div class="english">Easy Craft Launcher is a Minecraft Java Edition launcher crafted with Python by a Chinese developer, aiming to deliver a fast and stable gaming experience to players.</div>
+        <div class="hero-tags">
+          <span class="hero-tag">Open Source</span>
+          <span class="hero-tag">Side Projects</span>
+          <span class="hero-tag">Learning by Building</span>
+        </div>
 
-        <div class="chinese">虽然目前我们的启动器仅支持命令行操作，没有图形用户界面（GUI），但我们通过GitHub Action实现了自动打包成可执行文件（exe），让玩家轻松安装和启动游戏。</div>
-        <div class="english">Although our launcher currently operates through the command line without a graphical user interface (GUI), we have implemented a GitHub Action to automatically package it into an executable file (exe), making it easy for players to install and launch the game.</div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            View Projects ->
+          </a>
+          <a href="#about" class="btn btn-ghost">
+            About Me
+          </a>
+        </div>
 
-        <div class="chinese">我们的亮点：</div>
-        <div class="english">Our highlights:</div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span>Based on GitHub · motwnb</span>
+          </div>
+          <div class="hero-meta-item">
+            <span>Always learning, always shipping</span>
+          </div>
+        </div>
 
-        <div class="chinese">- 一键启动：无需复杂的配置，只需一个命令，即可快速进入游戏。</div>
-        <div class="english">- One-click Launch: No complex configurations needed - just one command to quickly dive into the game.</div>
+        <div class="hero-orbit">
+          <div class="hero-orbit-dot"></div>
+        </div>
+      </div>
 
-        <div class="chinese">- 自动更新：通过GitHub Action，我们确保启动器的版本始终保持最新。</div>
-        <div class="english">- Automatic Updates: With GitHub Action, we ensure that the launcher is always up-to-date.</div>
+      <aside class="hero-side">
+        <section class="card" id="about">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Profile</div>
+              <div class="card-subtitle">Personal Information</div>
+            </div>
+          </div>
+          <div class="avatar-row">
+            <div class="avatar">M</div>
+            <div>
+              <div class="avatar-info-main">MotWnb</div>
+              <div class="avatar-info-sub">
+                Developer · Hobbyist · Explorer
+              </div>
+            </div>
+          </div>
+          <p class="card-subtitle">
+            I use Python and Java to build various tools and applications. I'm passionate about open source and love contributing to the community.
+            <a class="social-pill" href="https://github.com/MotWnb" target="_blank" rel="noreferrer">
+              <span>GitHub</span>
+            </a>
+          </div>
+        </section>
 
-        <div class="chinese">- 轻量级：没有GUI意味着更少的资源占用，让您的游戏运行更加流畅。</div>
-        <div class="english">- Lightweight: The absence of GUI means fewer resource requirements, allowing for a smoother gaming experience.</div>
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Tech Stack</div>
+              <div class="card-subtitle">I work with these technologies</div>
+            </div>
+          </div>
+          <div class="tech-grid">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Python</span>
+          </div>
+        </section>
+      </aside>
+    </section>
 
-        <div class="chinese">- 社区驱动：我们倾听社区的声音，不断优化和改进启动器。</div>
-        <div class="english">- Community-driven: We listen to the community and continuously optimize and improve the launcher.</div>
+    <section class="section" id="projects">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Some projects I've built and shared on GitHub</p>
+        </div>
+        <a href="https://github.com/MotWnb?tab=repositories" target="_blank" rel="noreferrer" class="nav-link">
+          View all on GitHub →
+        </a>
+      </div>
 
-        <div class="chinese">立即体验Easy Craft Launcher，享受《我的世界》的无穷魅力！</div>
-        <div class="english">Experience Easy Craft Launcher now and immerse yourself in the endless charm of Minecraft!</div>
+      <!-- <div class="projects-grid">
+        <a class="project-card" href="https://github.com/MotWnb" target="_blank" rel="noreferrer">
+          <div class="project-header">
+        <div class="project-name">Example-Project-1</div>
+        <div class="project-badge">Featured</div>
+          </div>
+          <p class="project-desc">
+        在这里写项目简介，比如这是一个什么工具、解决了什么问题、用到了哪些技术。
+          </p>
+          <div class="project-meta">
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">CLI</span>
+        </div>
+        <div class="project-stars">
+          <span>★</span>
+          <span>0</span>
+        </div>
+          </div>
+        </a>
+      </div> -->
 
-    </div>
-    <div class="github-link">
-        <a href="https://github.com/motwnb/EasyCraftLauncher" class="flash-button">访问GitHub仓库</a>
-    </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> MotWnb</span>
+      <span>Built with plain HTML & CSS</span>
+    </footer>
+  </main>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
